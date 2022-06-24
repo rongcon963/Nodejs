@@ -1,5 +1,5 @@
 const Course = require('../models/Course');
-const {mongooseToObject} = require('../../util/mongoose')
+const {multipleMongooseToObject,mongooseToObject} = require('../../util/mongoose')
 
 class CourseController {
     // [GET] /courses/:slug
@@ -81,6 +81,7 @@ class CourseController {
         }
     }
 
+    // [POST] /courses/handle-form-trash
     handleFormTrash(req, res, next) {
         switch(req.body.action) {
             case 'restore':
@@ -96,6 +97,18 @@ class CourseController {
             default:
                 res.json( { message: 'Action is invalid'} );
         }
+    }
+
+    // [GET] /courses/search-course
+    search(req, res, next) {
+        var search = req.query.s;
+        Course.find({'name' : new RegExp(search, 'i')})
+            .then(courses => {
+                res.render('me/stored-courses', {
+                    courses : multipleMongooseToObject(courses)
+                });
+            })
+            .catch(next);
     }
 }
 

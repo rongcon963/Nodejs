@@ -1,3 +1,7 @@
+<form class="form-inline my-2 my-lg-0" method="GET" action="/courses/search-course">
+    <input class="form-control mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <form class="mt-4" name="container-form" method="POST" action="/courses/handle-form-actions">
     <div>
       <h3>Khóa học của tôi</h3>
@@ -92,8 +96,6 @@
         var checkboxAll = $('#checkbox-all');
         var courseItemCheckbox = $('input[name="courseIds[]"]');
         var checkAllSubmitBtn = $('.check-all-submit-btn');
-
-        console.log(containerForm)
         
         // When dialog confirm clicked
         $('#delete-course-modal').on('show.bs.modal', function (event) {
