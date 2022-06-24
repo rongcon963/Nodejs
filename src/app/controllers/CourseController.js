@@ -105,6 +105,7 @@ class CourseController {
         Course.find({'name' : new RegExp(search, 'i')})
             .then(courses => {
                 res.render('me/stored-courses', {
+                    search,
                     courses : multipleMongooseToObject(courses)
                 });
             })
