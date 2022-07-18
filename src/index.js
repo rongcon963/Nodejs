@@ -3,7 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const handlebars  = require('express-handlebars');
-const SortMiddleware = require('./app/middlewares/SortMiddleware');
+const SortMiddleware = require('./app/middlewares/sortMiddleware');
 const route = require('./routes');
 const db = require('./config/db');
 

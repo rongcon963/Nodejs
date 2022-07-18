@@ -21,12 +21,24 @@ class CourseController {
     // [POST] /courses/store
     store(req, res, next) {
         const formData = req.body;
-        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg`
-        // res.json(req.body);
+        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg`;
         const course = new Course(formData);
         course.save()
             .then(() => res.redirect('/me/stored/courses'))
             .catch(next);
+        
+        // Logic này bị vấn đề về khi submit cùng một lúc
+        // Course.findOne({})
+        //     .sort({ _id: 'desc' })
+        //     .then(latestCourse => {
+        //         formData._id = latestCourse._id + 1;
+        //         // res.json(req.body);
+        //         const course = new Course(formData);
+        //         course.save()
+        //             .then(() => res.redirect('/me/stored/courses'))
+        //             .catch(next);
+        //     })
+        
         //res.send('Course Save');
     }
 
